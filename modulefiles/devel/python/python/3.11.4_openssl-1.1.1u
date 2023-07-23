@@ -1,0 +1,29 @@
+#%Module1.0#####################################################################
+##
+## modules modulefile
+##
+proc ModulesHelp { } {
+        global version prefix
+
+        puts stderr "\tmodules - loads the modules software & application environment"
+        puts stderr "\n\tThis adds $prefix/* to several of the"
+        puts stderr "\tenvironment variables."
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads the modules environment for java jdk"
+
+# for Tcl script use only
+set	version		3.11.4_openssl-1.1.1u
+set	prefix		/opt/sws/devel/python/$version
+
+
+setenv          MODULESHOME	$prefix
+prepend-path    PATH   		$prefix/bin
+prepend-path    PATH   		/home/huber/.local/bin
+prepend-path    MANPATH		$prefix/share/man
+
+prereq openssl/1.1.1u 
+
+# enable module versioning modulepath
+#module use {/usr/share/modules/versions}

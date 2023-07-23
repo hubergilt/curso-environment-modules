@@ -1,0 +1,26 @@
+#%Module1.0#####################################################################
+##
+## modules modulefile
+##
+proc ModulesHelp { } {
+        global version prefix
+
+        puts stderr "\tmodules - loads the modules software & application environment"
+        puts stderr "\n\tThis adds $prefix/* to several of the"
+        puts stderr "\tenvironment variables."
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads the modules environment for php"
+
+# for Tcl script use only
+set	version		7.4.33	
+set	prefix		/opt/sws/devel/php/$version
+
+
+setenv          MODULESHOME	$prefix
+prepend-path    PATH   		$prefix/bin
+prepend-path    MANPATH		$prefix/php/man
+
+# enable module versioning modulepath
+#module use {/usr/share/modules/versions}

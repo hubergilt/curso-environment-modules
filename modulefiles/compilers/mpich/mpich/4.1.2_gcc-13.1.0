@@ -1,0 +1,36 @@
+#%Module1.0#####################################################################
+##
+## modules modulefile
+##
+proc ModulesHelp { } {
+        global version prefix
+
+        puts stderr "\tmodules - loads the modules software & application environment"
+        puts stderr "\n\tThis adds $prefix/* to several of the"
+        puts stderr "\tenvironment variables."
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads the modules environment for gcc compiler"
+
+# for Tcl script use only
+set	version		4.1.2_gcc-13.1.0
+set	prefix		/opt/sws/compilers/mpich/$version
+
+setenv          MODULESHOME	$prefix
+prepend-path    PATH   		$prefix/bin
+prepend-path    MANPATH		$prefix/share/man
+prepend-path	LIBDIR		$prefix/lib
+prepend-path	LD_LIBRARY_PATH $prefix/lib 
+prepend-path	LD_RUN_PATH	$prefix/lib
+
+prereq	gcc/13.1.0	
+conflict gcc/8.5.0
+conflict gcc/9.5.0
+conflict gcc/10.5.0
+conflict gcc/11.4.0
+conflict gcc/12.3.0
+conflict gcc/12.3.0
+
+# enable module versioning modulepath
+#module use {/usr/share/modules/versions}
